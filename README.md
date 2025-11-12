@@ -1,6 +1,9 @@
 # Desafio-BruteForce-Bootcamp-Santander
 Repositorio contendo um desafio de bruteforce utilizando plataforma tryhackme. 
 
+Eu comecei o desafio utilizando o nmap para fazer a varredura das portas e detecar os servicos e versoes.
+
+utilizei os comando -Pn (para nao pingar a maquina alvo) e -sV para identificar a versao e o software que esta rodando em cada porta aberta.
 
 NMAP:
 
@@ -19,8 +22,11 @@ Nmap done: 1 IP address (1 host up) scanned in 12.93 seconds
 
 
 PORTAS ABERTAS:
-22 - SSH 
-80 - HTTP
+22 - SSH  OpenSSH 7.6p1 
+80 - HTTP Apache 2.4.29
+------------------------------------------------------------------------------
+
+Apos identificar as portas abertas, eu realizei um Gobuster para identificar os subdominios que poderia me levar a alguma pagina com vulnerabilidade. 
 
 
 ENUMERACAO DE SUBDOMINIOS (GOBUSTER)
@@ -36,6 +42,17 @@ Starting gobuster in directory enumeration mode
 Progress: 4613 / 4613 (100.00%)
 ===============================================================
 Finished
+
+Encontrei esse /admin que me levou para uma pagina onde pedia um login e senha.Entao eu abri o codigo fonte da pagina onde havia um comentario bem descuidado avisando um tal de John que o login era "admin".
+
+A partir dai, eu ja tinha dois nomes que eu poderia rodar um bruteforce para encontrar as suas senhas. 
+Comecei com o usuario admin:
+Rodei um hydra no usuario admin, utilizando a wordlist rockyou.txt e encontrei a senha "xavier"
+
+coloquei o login "admin" e a senha "xavier" na pagina web e consegui acesso a uma RSA Private Key.
+Joguei essa RSA Private Key no nano e depois apliquei um ssh2john para transformar em hash. Depois disso tudo, usei a wordlist rock novamente para quebrar a hash. E entao encontrei a senha "rockinroll"  para o usuario "john".
+
+Depois disso, a continuacao do desafio na tryhackme era entrar no usuario john via ssh e depois escalar privilegios para o root.
 
 USUARIOS ENCONTRADOS: 
 jhon:rockinroll
