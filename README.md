@@ -1,11 +1,12 @@
 # Desafio-BruteForce-Bootcamp-Santander
-Repositorio contendo um desafio de bruteforce utilizando plataforma tryhackme. 
+### Repositorio contendo um desafio de bruteforce utilizando plataforma tryhackme. 
 
-Eu comecei o desafio utilizando o nmap para fazer a varredura das portas e detecar os servicos e versoes.
+---
+Eu comecei o desafio utilizando o nmap para fazer a varredura das portas e detecar os serviços e versões.
 
-utilizei os comando -Pn (para nao pingar a maquina alvo) e -sV para identificar a versao e o software que esta rodando em cada porta aberta.
+Utilizei os comando -Pn (para nao pingar a maquina alvo) e -sV para identificar a versão e o software que está rodando em cada porta aberta.
 
-NMAP:
+### NMAP:
 
 nmap -Pn -sV 10.201.56.120
 
@@ -33,7 +34,7 @@ Nmap done: 1 IP address (1 host up) scanned in 12.93 seconds
 
 ---
 
-PORTAS ABERTAS:
+### PORTAS ABERTAS:
 
 22 - SSH  OpenSSH 7.6p1 
 
@@ -41,10 +42,10 @@ PORTAS ABERTAS:
 
 ---
 
-Apos identificar as portas abertas, eu realizei um Gobuster para identificar os subdomínios que poderia me levar a alguma pagina com vulnerabilidade. 
+Após identificar as portas abertas, eu realizei um Gobuster para identificar os subdomínios que poderiam me levar a alguma página com vulnerabilidade. 
 
 
-ENUMERAÇÃO DE SUBDOMÍNIOS (GOBUSTER)
+### ENUMERAÇÃO DE SUBDOMÍNIOS (GOBUSTER)
 
 Starting gobuster in directory enumeration mode
 
@@ -65,7 +66,7 @@ Progress: 4613 / 4613 (100.00%)
 
 
 Finished
-
+---
 
 
 Encontrei esse /admin que me levou para uma pagina onde pedia um login e senha. (imagem 1)
@@ -75,8 +76,8 @@ Entao eu abri o codigo fonte da pagina para tentar encontrar algo e lá havia um
 ---
 
 A partir dai, eu ja tinha dois nomes que eu poderia rodar um bruteforce para encontrar as suas senhas. 
-Comecei com o usuario admin:
-Rodei um hydra no usuario admin, utilizando a wordlist rockyou.txt e encontrei a senha "xavier" (imagem 3)
+Comecei com o usuário "admin":
+Rodei um hydra no usuario "admin" utilizando a wordlist rockyou.txt e encontrei a senha "xavier" (imagem 3)
 
 coloquei o login "admin" e a senha "xavier" na pagina web e consegui acesso a uma RSA Private Key. (imagem 4 e imagem 5)
 
