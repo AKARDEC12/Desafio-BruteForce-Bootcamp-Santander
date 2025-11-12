@@ -87,6 +87,7 @@ Depois disso tudo, usei a wordlist rock novamente para quebrar a hash. E entao e
 
 Depois disso, a continuacao do desafio na tryhackme era entrar no usuario john via ssh e depois escalar privilegios para o root. (imagem 7, imagem 8, imagem 9 e imagem 10)
 
+---
 USUÁRIOS E SENHAS ENCONTRADAS: 
 
 jhon:rockinroll
